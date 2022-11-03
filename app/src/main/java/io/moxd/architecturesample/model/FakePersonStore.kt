@@ -3,7 +3,7 @@ package io.moxd.architecturesample.model
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
-// might me "Room" or another real, persisting storage in future
+// might be "Room" or another real, persisting storage in future
 class FakePersonStore {
 
     private val personList = mutableListOf<Person>()

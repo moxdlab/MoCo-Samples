@@ -19,7 +19,7 @@ class MainActivity : ComponentActivity() {
         val viewModel by viewModels<PersonViewModel>()
         setContent {
             ArchitectureSampleTheme {
-                // no need for remember:
+                // no need for 'remember':
                 val items by viewModel.getAllPersons().observeAsState(emptyList())
 
                 MainScreen(items,
