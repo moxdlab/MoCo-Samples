@@ -10,6 +10,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import io.moxd.architecturesample.R
 import io.moxd.architecturesample.model.Person
 
@@ -44,3 +45,11 @@ fun MainScreen(
     }
 }
 
+@Preview
+@Composable
+fun MainScreenPreview(){
+    MainScreen(itemsToShow = listOf(
+        Person("Preview", "+49123456789"),
+        Person("Preview 2", "+49987654321")
+    ), onFabClicked = {}, onItemClicked = {})
+}
