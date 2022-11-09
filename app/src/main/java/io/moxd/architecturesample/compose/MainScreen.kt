@@ -47,7 +47,7 @@ fun MainScreen(
 
 @Preview
 @Composable
-fun MainScreenPreview(){
+fun MainScreenPreview() {
     MainScreen(itemsToShow = listOf(
         Person("Preview", "+49123456789"),
         Person("Preview 2", "+49987654321")

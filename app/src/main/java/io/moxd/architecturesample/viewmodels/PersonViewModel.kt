@@ -12,8 +12,8 @@ class PersonViewModel : ViewModel() {
 
     fun getAllPersons() = personStore.getAll()
         .map {
-        it.toMutableStateList()
-    }
+            it.toMutableStateList()
+        }
 
     fun addPerson(name: String, tel: String) {
         personStore.addPerson(Person(name, tel))
