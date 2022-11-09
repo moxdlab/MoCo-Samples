@@ -6,7 +6,7 @@ import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import io.moxd.architecturesample.model.FakePersonStore
 import io.moxd.architecturesample.model.Person
-import io.moxd.architecturesample.model.FakePersonDownloader
+import io.moxd.architecturesample.model.PersonDownloader
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -30,7 +30,7 @@ class PersonViewModel : ViewModel() {
 
     private fun updateAllPersons() {
         viewModelScope.launch(Dispatchers.IO) {
-            val persons = FakePersonDownloader().downloadNewPersons()
+            val persons = PersonDownloader().downloadNewPersons()
             persons.forEach { personStore.addPerson(it) }
         }
     }
