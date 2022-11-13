@@ -13,7 +13,9 @@ class PersonDownloader {
         val response = client.request(host)
         val personData = response.body<String>()
         val (name, tel) = personData.split(",")
-        return listOf(Person(name, tel))
+        return listOf(Person(name, tel)).also {
+            client.close()
+        }
     }
 
 }
