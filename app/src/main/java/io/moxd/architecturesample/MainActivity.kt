@@ -21,8 +21,8 @@ class MainActivity : ComponentActivity() {
             ArchitectureSampleTheme {
                 // no need for 'remember':
                 val items by viewModel.getAllPersons().observeAsState(emptyList())
-
-                MainScreen(items,
+                val appOpenedCount by viewModel.getAppOpenedCount().observeAsState(0)
+                MainScreen(appOpenedCount, items,
                     onFabClicked = {
                         viewModel.addPerson("Max Musterfrau", "+491234567890")
                     },
