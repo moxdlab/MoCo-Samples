@@ -8,7 +8,7 @@ import io.moxd.architecturesample.model.Person
 
 // you will not only have one single viewmodel, but maybe as many as you have screens
 class PersonViewModel : ViewModel() {
-    private val personStore = FakePersonStore()
+    private val personStore = FakePersonStore.getInstance()
 
     fun getAllPersons() = personStore.getAll()
         .map {
