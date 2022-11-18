@@ -4,16 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
 // might be "Room" or another real, persisting storage in future
-class FakePersonStore private constructor() {
-
-    companion object {
-        var INSTANCE: FakePersonStore? = null //TODO: not thread safe, look up "singleton pattern"
-        fun getInstance(): FakePersonStore {
-            return if (INSTANCE == null)
-                FakePersonStore().also { INSTANCE = it }
-            else INSTANCE!!
-        }
-    }
+object FakePersonStore {
 
     private val personList = mutableListOf<Person>()
     private val personListLive = MutableLiveData<List<Person>>()

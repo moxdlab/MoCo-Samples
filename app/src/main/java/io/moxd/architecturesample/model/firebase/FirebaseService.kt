@@ -41,9 +41,8 @@ class FirebaseService : FirebaseMessagingService() {
     }
 
     private fun handleNow(data: Map<String, String>) {
-        val store = FakePersonStore.getInstance()
         data.forEach {
-            store.addPerson(Person(it.key, it.value))
+            FakePersonStore.addPerson(Person(it.key, it.value))
         }
     }
 
