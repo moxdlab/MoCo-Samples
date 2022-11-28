@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import io.moxd.architecturesample.R
-import io.moxd.architecturesample.model.Person
+import io.moxd.architecturesample.model.persistence.Person
 
 @Composable
 fun MainScreen(
@@ -34,7 +34,7 @@ fun MainScreen(
     ) { padding ->
         Box(modifier = Modifier.padding(padding)) {
             LazyColumn {
-                itemsIndexed(itemsToShow) { index, (name, tel) ->
+                itemsIndexed(itemsToShow) { index, (_, name, tel) ->
                     PersonEntry(name = name, tel = tel) {
                         onItemClicked(itemsToShow[index])
                     }
@@ -49,7 +49,7 @@ fun MainScreen(
 @Composable
 fun MainScreenPreview() {
     MainScreen(itemsToShow = listOf(
-        Person("Preview", "+49123456789"),
-        Person("Preview 2", "+49987654321")
+        Person(1, "Preview", "+49123456789"),
+        Person(2, "Preview 2", "+49987654321")
     ), onFabClicked = {}, onItemClicked = {})
 }

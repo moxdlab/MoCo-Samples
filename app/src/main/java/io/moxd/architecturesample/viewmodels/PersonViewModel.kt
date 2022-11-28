@@ -1,21 +1,27 @@
 package io.moxd.architecturesample.viewmodels
 
-import androidx.compose.runtime.toMutableStateList
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.map
-import io.moxd.architecturesample.model.FakePersonStore
-import io.moxd.architecturesample.model.Person
+import android.app.Application
+import androidx.lifecycle.*
+import io.moxd.architecturesample.model.PersonStore
+import io.moxd.architecturesample.model.persistence.AppDatabase
+import io.moxd.architecturesample.model.persistence.Person
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 // you will not only have one single viewmodel, but maybe as many as you have screens
-class PersonViewModel : ViewModel() {
-    private val personStore = FakePersonStore()
+class PersonViewModel(app: Application) : AndroidViewModel(app) {
 
-    fun getAllPersons() = personStore.getAll()
-        .map {
-            it.toMutableStateList()
-        }
+    private val db = AppDatabase.getInstance(app.applicationContext)
+    private val personDao = db.personDao()
+    private val personStore = PersonStore(personDao).apply {
+        viewModelScope.launch(Dispatchers.IO) { init() }
+    }
+
+    fun getAllPersons(): LiveData<List<Person>> = personStore.getAll()
 
     fun addPerson(name: String, tel: String) {
-        personStore.addPerson(Person(name, tel))
+        viewModelScope.launch(Dispatchers.IO) {
+            personStore.addPerson(Person(name = name, tel = tel))
+        }
     }
 }
