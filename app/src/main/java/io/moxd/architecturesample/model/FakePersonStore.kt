@@ -22,7 +22,7 @@ object FakePersonStore {
 
     fun addPerson(p: Person) {
         personList += p
-        personListLive.postValue(personList)
+        personListLive.postValue(personList.toList())
     }
 
     fun getAll(): LiveData<List<Person>> = personListLive
